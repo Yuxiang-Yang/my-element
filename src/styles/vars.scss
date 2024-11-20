@@ -1,0 +1,70 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:color';
+@use './consts.scss';
+
+/* colors */
+:root {
+  --ch-color-white: #ffffff;
+  --ch-color-black: #000000;
+  --ch-color-primary: #{map.get(consts.$colors, 'primary')};
+  @each $type, $color in consts.$colors {
+    @for $i from 1 through 9 {
+      --ch-color-#{$type}-light-#{$i}: #{color.mix(#fff, $color, $i * 10%)};
+    }
+  }
+  --ch-color-primary-dark-2: rgb(51.2, 126.4, 204);
+  --ch-color-success: #{map.get(consts.$colors, 'success')};
+  --ch-color-warning: #{map.get(consts.$colors, 'warning')};
+  --ch-color-danger: #{map.get(consts.$colors, 'danger')};
+  --ch-color-error: #{map.get(consts.$colors, 'error')};
+  --ch-color-info: #{map.get(consts.$colors, 'info')};
+
+  --ch-bg-color: #ffffff;
+  --ch-bg-color-page: #f2f3f5;
+  --ch-bg-color-overlay: #ffffff;
+  --ch-text-color-primary: #303133;
+  --ch-text-color-regular: #606266;
+  --ch-text-color-secondary: #909399;
+  --ch-text-color-placeholder: #a8abb2;
+  --ch-text-color-disabled: #c0c4cc;
+  --ch-border-color: #dcdfe6;
+  --ch-border-color-light: #e4e7ed;
+  --ch-border-color-lighter: #ebeef5;
+  --ch-border-color-extra-light: #f2f6fc;
+  --ch-border-color-dark: #d4d7de;
+  --ch-border-color-darker: #cdd0d6;
+  --ch-fill-color: #f0f2f5;
+  --ch-fill-color-light: #f5f7fa;
+  --ch-fill-color-lighter: #fafafa;
+  --ch-fill-color-extra-light: #fafcff;
+  --ch-fill-color-dark: #ebedf0;
+  --ch-fill-color-darker: #e6e8eb;
+  --ch-fill-color-blank: #ffffff;
+
+  /* border */
+  --ch-border-width: 1px;
+  --ch-border-style: solid;
+  --ch-border-color-hover: var(--ch-text-color-disabled);
+  --ch-border: var(--ch-border-width) var(--ch-border-style) var(--ch-border-color);
+  --ch-border-radius-base: 4px;
+  --ch-border-radius-small: 2px;
+  --ch-border-radius-round: 20px;
+  --ch-border-radius-circle: 100%;
+
+  /* font */
+  --ch-font-size-extra-large: 20px;
+  --ch-font-size-large: 18px;
+  --ch-font-size-medium: 16px;
+  --ch-font-size-base: 14px;
+  --ch-font-size-small: 13px;
+  --ch-font-size-extra-small: 12px;
+  --ch-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,
+    sans-serif;
+  --ch-font-weight-primary: 500;
+
+  /* disabled */
+  --ch-disabled-bg-color: var(--ch-fill-color-light);
+  --ch-disabled-text-color: var(--ch-text-color-placeholder);
+  --ch-disabled-border-color: var(--ch-border-color-light);
+}
