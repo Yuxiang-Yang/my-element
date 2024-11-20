@@ -9,5 +9,6 @@ export default antfu({
     'jsonc/sort-keys': 'off',
     'no-debugger': 'off',
     'no-console': 'off',
+    'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
   },
 })

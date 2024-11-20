@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { ButtonInstance } from './components/Button/types'
-import { onMounted, useTemplateRef } from 'vue'
+import type { NameType } from './components/Collapse/types'
+import { onMounted, ref, useTemplateRef } from 'vue'
 import Button from './components/Button/Button.vue'
+import Collapse from './components/Collapse/Collapse.vue'
+import Item from './components/Collapse/CollapseItem.vue'
 
 const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
 onMounted(() => {
@@ -10,6 +13,13 @@ onMounted(() => {
 function testClick(e: MouseEvent) {
   console.log(e)
 }
+
+const activeNames = ref<NameType[]>(['a'])
+console.log(activeNames.value)
+setTimeout(() => {
+  activeNames.value = ['a', 'b']
+  // activeNames.value.push('b')
+}, 2000)
 </script>
 
 <template>
@@ -75,6 +85,26 @@ function testClick(e: MouseEvent) {
       <Button type="primary" size="large">
         large
       </Button>
+    </div>
+    <div class="row">
+      <Collapse v-model="activeNames">
+        <Item name="a" title="111">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        </Item>
+        <Item name="b" title="222">
+          <template #title>
+            <h1>我是title2</h1>
+          </template>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit..
+        </Item>
+        <Item name="c" disabled>
+          <template #title>
+            <h2>我是title3</h2>
+          </template>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit..
+        </Item>
+      </Collapse>
+      {{ activeNames }}
     </div>
   </div>
 </template>

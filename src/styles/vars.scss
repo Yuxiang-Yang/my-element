@@ -1,24 +1,24 @@
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:color';
-@use './consts.scss';
+@use './constants.scss';
 
 /* colors */
 :root {
   --ch-color-white: #ffffff;
   --ch-color-black: #000000;
-  --ch-color-primary: #{map.get(consts.$colors, 'primary')};
-  @each $type, $color in consts.$colors {
+  --ch-color-primary: #{map.get(constants.$colors, 'primary')};
+  @each $type, $color in constants.$colors {
     @for $i from 1 through 9 {
       --ch-color-#{$type}-light-#{$i}: #{color.mix(#fff, $color, $i * 10%)};
     }
   }
   --ch-color-primary-dark-2: rgb(51.2, 126.4, 204);
-  --ch-color-success: #{map.get(consts.$colors, 'success')};
-  --ch-color-warning: #{map.get(consts.$colors, 'warning')};
-  --ch-color-danger: #{map.get(consts.$colors, 'danger')};
-  --ch-color-error: #{map.get(consts.$colors, 'error')};
-  --ch-color-info: #{map.get(consts.$colors, 'info')};
+  --ch-color-success: #{map.get(constants.$colors, 'success')};
+  --ch-color-warning: #{map.get(constants.$colors, 'warning')};
+  --ch-color-danger: #{map.get(constants.$colors, 'danger')};
+  --ch-color-error: #{map.get(constants.$colors, 'error')};
+  --ch-color-info: #{map.get(constants.$colors, 'info')};
 
   --ch-bg-color: #ffffff;
   --ch-bg-color-page: #f2f3f5;

@@ -1,4 +1,4 @@
-@use '@/styles/consts.scss';
+@use '@/styles/constants.scss';
 
 .ch-button {
   --ch-button-font-weight: var(--ch-font-weight-primary);
@@ -87,7 +87,7 @@
     margin-left: 6px;
   }
 }
-@each $val in consts.$types {
+@each $val in constants.$types {
   .ch-button--#{$val} {
     --ch-button-text-color: var(--ch-color-white);
     --ch-button-bg-color: var(--ch-color-#{$val});
