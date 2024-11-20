@@ -5,6 +5,7 @@ import { onMounted, ref, useTemplateRef } from 'vue'
 import Button from './components/Button/Button.vue'
 import Collapse from './components/Collapse/Collapse.vue'
 import Item from './components/Collapse/CollapseItem.vue'
+import Icon from './components/Icon/Icon.vue'
 
 const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
 onMounted(() => {
@@ -16,14 +17,16 @@ function testClick(e: MouseEvent) {
 
 const activeNames = ref<NameType[]>(['a'])
 console.log(activeNames.value)
+const size = ref<any>('1x')
 setTimeout(() => {
   activeNames.value = ['a', 'b']
-  // activeNames.value.push('b')
+  size.value = '10x'
 }, 2000)
 </script>
 
 <template>
   <div>
+    <Icon icon="arrow-up" color="purple" :size="size" spin></Icon>
     <Button ref="buttonRef" type="primary" @click="testClick">
       Test Button
     </Button>
@@ -84,6 +87,14 @@ setTimeout(() => {
       </Button>
       <Button type="primary" size="large">
         large
+      </Button>
+    </div>
+    <div class="row">
+      <Button type="primary" loading>
+        loading
+      </Button>
+      <Button type="primary" icon="arrow-down">
+        download
       </Button>
     </div>
     <div class="row">

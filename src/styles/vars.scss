@@ -67,4 +67,8 @@
   --ch-disabled-bg-color: var(--ch-fill-color-light);
   --ch-disabled-text-color: var(--ch-text-color-placeholder);
   --ch-disabled-border-color: var(--ch-border-color-light);
+
+  /* animation */
+  --ch-transition-duration: 0.3s;
+  --ch-transition-duration-fast: 0.2s;
 }
