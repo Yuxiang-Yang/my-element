@@ -53,5 +53,5 @@
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: height 0.3s;
+  transition: height var(--ch-transition-duration);
 }
