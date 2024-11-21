@@ -1,16 +1,23 @@
 <script setup lang="ts">
+import type { AlertInstance } from './components/Alert/types'
 import type { ButtonInstance } from './components/Button/types'
 import type { NameType } from './components/Collapse/types'
 import { onMounted, ref, useTemplateRef } from 'vue'
+import Alert from './components/Alert/Alert.vue'
 import Button from './components/Button/Button.vue'
 import Collapse from './components/Collapse/Collapse.vue'
 import Item from './components/Collapse/CollapseItem.vue'
 import Icon from './components/Icon/Icon.vue'
 
 const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
+const alertRef = useTemplateRef<AlertInstance>('alertRef')
 onMounted(() => {
   console.log(buttonRef.value?.ref)
 })
+setTimeout(() => {
+  alertRef.value?.close()
+}, 3000)
+
 function testClick(e: MouseEvent) {
   console.log(e)
 }
@@ -22,10 +29,36 @@ setTimeout(() => {
   activeNames.value = ['a', 'b']
   size.value = '10x'
 }, 2000)
+
+function handleClose(e: MouseEvent) {
+  console.log(e)
+}
 </script>
 
 <template>
   <div>
+    <div class="row">
+      <Alert ref="alertRef" type="primary" title="title" description="description" @close="handleClose"></Alert>
+    </div>
+    <div class="row">
+      <Alert type="success" title="title" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid labore ratione porro similique natus impedit ad sequi esse, maxime voluptatibus molestias fugiat laboriosam voluptatem quasi dolor modi quo fugit provident ipsum, illo beatae magnam cum. Nulla deserunt magni similique debitis esse nemo dicta repellendus, possimus vero iusto, illum cumque ea!" :show-icon="true" center></Alert>
+    </div>
+    <div class="row">
+      <Alert type="info" title="title" :show-icon="true"></Alert>
+    </div>
+    <div class="row">
+      <Alert type="warning" title="title" description="description">
+        <template #title>
+          <b>我是标题</b>
+        </template>
+        <template #default>
+          <p>我是内容</p>
+        </template>
+      </Alert>
+    </div>
+    <div class="row">
+      <Alert type="danger" title="title" close-text="点这里可以关闭" effect="dark"></Alert>
+    </div>
     <Icon icon="arrow-up" color="purple" :size="size" spin></Icon>
     <Button ref="buttonRef" type="primary" @click="testClick">
       Test Button
