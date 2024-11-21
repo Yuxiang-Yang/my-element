@@ -9,6 +9,7 @@
   fill: currentColor;
   color: var(--ch-icon-color);
   font-size: inherit;
+  line-height: 1em;
 }
 
 @each $type in constants.$types {
