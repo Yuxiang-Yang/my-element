@@ -14,19 +14,20 @@ if (props.accordion && props.modelValue.length > 1) {
   console.error('Accordion mode should only have one active item.')
 }
 function handleItemClick(item: NameType) {
+  let _activeNames = [...activeNames.value]
   if (props.accordion) {
-    activeNames.value = [activeNames.value[0] === item ? '' : item]
+    _activeNames = [activeNames.value[0] === item ? '' : item]
   } else {
-    const index = activeNames.value.indexOf(item)
+    const index = _activeNames.indexOf(item)
     if (index > -1) {
-      activeNames.value.splice(index, 1)
+      _activeNames.splice(index, 1)
     } else {
-      activeNames.value.push(item)
+      _activeNames.push(item)
     }
   }
-
-  emit('update:modelValue', activeNames.value)
-  emit('change', activeNames.value)
+  activeNames.value = _activeNames
+  emit('update:modelValue', _activeNames)
+  emit('change', _activeNames)
 }
 provide(collapseContextKey, { activeNames, handleItemClick })
 </script>
