@@ -1,38 +1,31 @@
 import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { afterAll, describe, expect, it, vi } from 'vitest'
 import Collapse from './Collapse.vue'
 import CollapseItem from './CollapseItem.vue'
 
-let wrapper: VueWrapper
-const handleChange = vi.fn()
-let headers: DOMWrapper<Element>[], contents: DOMWrapper<Element>[]
-let firstHeader: DOMWrapper<Element>, secondHeader: DOMWrapper<Element>, disabledHeader: DOMWrapper<Element>,
-  firstContent: DOMWrapper<Element>, secondContent: DOMWrapper<Element>, disabledContent: DOMWrapper<Element>
-
-describe('test Collapse.vue', () => {
-  beforeAll(() => {
-    wrapper = mount(() => (
-      <Collapse modelValue={['a']} onChange={handleChange}>
-        <CollapseItem name="a" title="title a">content a</CollapseItem>
-        <CollapseItem name="b" title="title b">content b</CollapseItem>
-        <CollapseItem name="c" title="title c" disabled>content c</CollapseItem>
-      </Collapse>
-    ), {
-      global: {
-        stubs: ['Icon'],
-      },
-      attachTo: document.body,
-    })
-    headers = wrapper.findAll('.ch-collapse-item__header')
-    contents = wrapper.findAll('.ch-collapse-item__wrapper')
-    firstHeader = headers[0]
-    secondHeader = headers[1]
-    disabledHeader = headers[2]
-    firstContent = contents[0]
-    secondContent = contents[1]
-    disabledContent = contents[2]
+describe('Collapse', () => {
+  const handleChange = vi.fn()
+  const wrapper = mount(() => (
+    <Collapse modelValue={['a']} onChange={handleChange}>
+      <CollapseItem name="a" title="title a">content a</CollapseItem>
+      <CollapseItem name="b" title="title b">content b</CollapseItem>
+      <CollapseItem name="c" title="title c" disabled>content c</CollapseItem>
+    </Collapse>
+  ), {
+    global: {
+      stubs: ['Icon'],
+    },
+    attachTo: document.body,
   })
+  const headers = wrapper.findAll('.ch-collapse-item__header')
+  const contents = wrapper.findAll('.ch-collapse-item__wrapper')
+  const firstHeader = headers[0]
+  const secondHeader = headers[1]
+  const disabledHeader = headers[2]
+  const firstContent = contents[0]
+  const secondContent = contents[1]
+  const disabledContent = contents[2]
   it('basic structure and text', () => {
     // length
     expect(headers.length).toBe(3)
@@ -52,7 +45,7 @@ describe('test Collapse.vue', () => {
     await secondHeader.trigger('click')
     expect(secondContent.isVisible()).toBeTruthy()
   })
-  it('send correct events', () => {
+  it('send correct events', async () => {
     expect(handleChange).toBeCalledTimes(2)
     expect(handleChange).toBeCalledWith([])
     expect(handleChange).lastCalledWith(['b'])
@@ -63,5 +56,31 @@ describe('test Collapse.vue', () => {
     await disabledHeader.trigger('click')
     expect(disabledContent.isVisible()).toBeFalsy()
     expect(handleChange).not.toBeCalled()
+  })
+  it('accrodion', async () => {
+    const handleChange = vi.fn()
+    const wrapper = mount(() => (
+      <Collapse modelValue={['a']} onChange={handleChange} accordion>
+        <CollapseItem name="a" title="title a">content a</CollapseItem>
+        <CollapseItem name="b" title="title b">content b</CollapseItem>
+        <CollapseItem name="c" title="title c" disabled>content c</CollapseItem>
+      </Collapse>
+    ), {
+      global: {
+        stubs: ['Icon'],
+      },
+      attachTo: document.body,
+    })
+    const headers = wrapper.findAll('.ch-collapse-item__header')
+    const contents = wrapper.findAll('.ch-collapse-item__wrapper')
+
+    expect(contents[0].isVisible()).toBeTruthy()
+
+    await headers[1].trigger('click')
+    expect(contents[0].isVisible()).toBeFalsy()
+    expect(contents[2].isVisible()).toBeFalsy()
+
+    await headers[1].trigger('click')
+    expect(contents[1].isVisible()).toBeFalsy()
   })
 })
