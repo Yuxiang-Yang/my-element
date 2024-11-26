@@ -10,5 +10,6 @@ export default antfu({
     'no-debugger': 'off',
     'no-console': 'off',
     'style/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    'test/prefer-lowercase-title': 'off',
   },
 })
