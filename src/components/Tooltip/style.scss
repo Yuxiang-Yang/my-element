@@ -1,0 +1,48 @@
+.ch-tooltip {
+  --ch-popover-bg-color: var(--ch-bg-color-overlay);
+  --ch-popover-font-size: var(--ch-font-size-base);
+  --ch-popover-border-color: var(--ch-border-color);
+  --ch-popover-padding: 5px 10px;
+  --ch-popover-border-radius: 4px;
+  display: inline-block;
+
+  .ch-tooltip__popper {
+    background: var(--ch-popover-bg-color);
+    border-radius: var(--ch-popover-border-radius);
+    border: 1px solid var(--ch-popover-border-color);
+    padding: var(--ch-popover-padding);
+    color: var(--ch-text-color-regular);
+    line-height: 1.4;
+    text-align: justify;
+    font-size: var(--ch-popover-font-size);
+    box-shadow: var(--ch-box-shadow-light);
+    word-break: break-all;
+    box-sizing: border-box;
+    z-index: 1000;
+
+    &.is-dark {
+      background-color: var(--ch-color-black);
+      color: var(--ch-color-white);
+      border-color: transparent;
+      .arrow {
+        border-color: transparent;
+        background-color: var(--ch-color-black);
+      }
+    }
+    .arrow {
+      width: 8px;
+      height: 8px;
+      box-sizing: border-box;
+      background: var(--ch-popover-bg-color);
+      transform: rotate(45deg);
+    }
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity var(--ch-transition-duration);
+  }
+}
