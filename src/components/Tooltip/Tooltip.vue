@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Placement, Side } from '@floating-ui/vue'
-import type { CSSProperties } from 'vue'
-import type { TooltipEmits, TooltipInstance, TooltipProps } from './type'
+import type { CSSProperties, Ref } from 'vue'
+import type { TooltipEmits, TooltipInstance, TooltipProps } from './types'
 import { useClickOutside } from '@/composables/useClickOutside'
 import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
 import { debounce } from 'lodash-es'
@@ -16,8 +16,9 @@ const {
   floatingOptions,
   transition = 'fade',
   showAfter = 0,
-  hideAfter = 0,
+  hideAfter = 200,
 } = defineProps<TooltipProps>()
+
 const emit = defineEmits<TooltipEmits>()
 
 const triggerNode = useTemplateRef('triggerNode')
@@ -71,11 +72,11 @@ const arrowStyle = computed(() => {
 const isOpen = ref(false)
 function open() {
   isOpen.value = true
-  emit('visiableChange', true)
+  emit('visibleChange', true)
 }
 function close() {
   isOpen.value = false
-  emit('visiableChange', false)
+  emit('visibleChange', false)
 }
 const deboucedOpen = debounce(open, showAfter)
 const deboucedClose = debounce(close, hideAfter)
@@ -95,8 +96,9 @@ function toggle() {
   }
 }
 
-const triggerEvents: Record<string, any> = ref({})
-const triggerEventsOuter: Record<string, any> = ref({})
+const triggerEvents: Ref<Record<string, EventListener>> = ref({})
+const triggerEventsOuter: Ref<Record<string, EventListener>> = ref({})
+const popperEvents: Ref<Record<string, EventListener>> = ref({})
 
 function attachEvents() {
   if (trigger === 'click') {
@@ -104,7 +106,13 @@ function attachEvents() {
   } else if (trigger === 'hover') {
     triggerEvents.value.mouseenter = openFinal
     triggerEventsOuter.value.mouseleave = closeFinal
+    popperEvents.value.mouseenter = openFinal
   }
+}
+function clearEvents() {
+  triggerEvents.value = {}
+  triggerEventsOuter.value = {}
+  popperEvents.value = {}
 }
 if (!manual && !disabled) {
   attachEvents()
@@ -117,16 +125,14 @@ if (!manual && !disabled) {
 }
 watch(() => manual, () => {
   if (manual) {
-    triggerEvents.value = {}
-    triggerEventsOuter.value = {}
+    clearEvents()
   } else {
     attachEvents()
   }
 })
 watch(() => disabled, () => {
   if (disabled) {
-    triggerEvents.value = {}
-    triggerEventsOuter.value = {}
+    clearEvents()
   } else {
     attachEvents()
   }
@@ -136,22 +142,11 @@ watch(() => trigger, (newTrigger, oldTrigger) => {
     return
   }
   if (newTrigger !== oldTrigger) {
-    triggerEvents.value = {}
-    triggerEventsOuter.value = {}
+    clearEvents()
     attachEvents()
   }
 })
-function show() {
-  if (manual) {
-    openFinal()
-  }
-}
-function hide() {
-  if (manual) {
-    closeFinal()
-  }
-}
-defineExpose<TooltipInstance>({ show, hide })
+defineExpose<TooltipInstance>({ show: openFinal, hide: closeFinal })
 </script>
 
 <template>
@@ -160,7 +155,10 @@ defineExpose<TooltipInstance>({ show, hide })
       <slot></slot>
     </div>
     <Transition :name="transition">
-      <div v-if="isOpen" ref="popperNode" class="ch-tooltip__popper" :class="{ 'is-dark': effect === 'dark' }" :style="floatingStyles">
+      <div
+        v-if="isOpen" ref="popperNode" class="ch-tooltip__popper" :class="{ 'is-dark': effect === 'dark' }"
+        :style="floatingStyles" v-on="popperEvents"
+      >
         <slot name="content">
           {{ content }}
         </slot>

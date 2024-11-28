@@ -7,11 +7,11 @@ describe('Tooltip.vue', () => {
     vi.useFakeTimers()
   })
   it('basic tooltip', async () => {
-    const onVisiableChange = vi.fn()
+    const onVisibleChange = vi.fn()
     const wrapper = mount(() => (
       <div>
         <div id="outside"></div>
-        <Tooltip content="hello tooltip" trigger="click" onVisiableChange={onVisiableChange}>
+        <Tooltip content="hello tooltip" trigger="click" onVisibleChange={onVisibleChange}>
           <button id="trigger">Trigger</button>
         </Tooltip>
       </div>
@@ -27,18 +27,18 @@ describe('Tooltip.vue', () => {
     await vi.runAllTimersAsync()
     expect(wrapper.find('.ch-tooltip__popper').exists()).toBe(true)
     expect(wrapper.find('.ch-tooltip__popper').text()).toBe('hello tooltip')
-    expect(onVisiableChange).toBeCalledWith(true)
+    expect(onVisibleChange).toBeCalledWith(true)
     // click outside
     const outsideElement = wrapper.find('#outside')
     await outsideElement.trigger('click')
     await vi.runAllTimersAsync()
     expect(wrapper.find('.ch-tooltip__popper').exists()).toBe(false)
-    expect(onVisiableChange).lastCalledWith(false)
+    expect(onVisibleChange).lastCalledWith(false)
   })
   it('hover tooltip', async () => {
-    const onVisiableChange = vi.fn()
+    const onVisibleChange = vi.fn()
     const wrapper = mount(() => (
-      <Tooltip content="hello tooltip" trigger="hover" onVisiableChange={onVisiableChange}>
+      <Tooltip content="hello tooltip" trigger="hover" onVisibleChange={onVisibleChange}>
         <button id="trigger">Trigger</button>
       </Tooltip>
     ), {
@@ -49,11 +49,11 @@ describe('Tooltip.vue', () => {
     await vi.runAllTimersAsync()
     expect(wrapper.find('.ch-tooltip__popper').exists()).toBe(true)
     expect(wrapper.find('.ch-tooltip__popper').text()).toBe('hello tooltip')
-    expect(onVisiableChange).toBeCalledWith(true)
+    expect(onVisibleChange).toBeCalledWith(true)
     // hover outside
     wrapper.find('.ch-tooltip').trigger('mouseleave')
     await vi.runAllTimersAsync()
     expect(wrapper.find('.ch-tooltip__popper').exists()).toBe(false)
-    expect(onVisiableChange).toBeCalledWith(false)
+    expect(onVisibleChange).toBeCalledWith(false)
   })
 })
