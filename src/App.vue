@@ -2,11 +2,14 @@
 import type { AlertInstance } from './components/Alert/types'
 import type { ButtonInstance } from './components/Button/types'
 import type { NameType } from './components/Collapse/types'
+import type { Command } from './components/Dropdown/types'
 import { onMounted, ref, useTemplateRef } from 'vue'
 import Alert from './components/Alert/Alert.vue'
 import Button from './components/Button/Button.vue'
 import Collapse from './components/Collapse/Collapse.vue'
 import Item from './components/Collapse/CollapseItem.vue'
+import Dropdown from './components/Dropdown/Dropdown.vue'
+import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Icon from './components/Icon/Icon.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
@@ -25,16 +28,11 @@ function testClick(e: MouseEvent) {
 
 const activeNames = ref<NameType[]>(['a'])
 const size = ref<any>('1x')
-const triggerMode = ref('click') as any
-setTimeout(() => {
-  activeNames.value = ['a', 'b']
-  size.value = '10x'
-  // triggerMode.value = 'hover'
-}, 2000)
+// setTimeout(() => {
+//   activeNames.value = ['a', 'b']
+//   size.value = '10x'
+// }, 2000)
 
-function handleClose(e: MouseEvent) {
-  console.log(e)
-}
 const tooltipRef = useTemplateRef('tooltipRef')
 function showPopper() {
   tooltipRef.value?.show()
@@ -46,15 +44,53 @@ const manual = ref(false)
 function toggleManual() {
   manual.value = !manual.value
 }
+const dropdownRef = useTemplateRef('dropdownRef')
+function showDropdown() {
+  dropdownRef.value?.show()
+}
+function hideDropdown() {
+  dropdownRef.value?.hide()
+}
 </script>
 
 <template>
   <div>
     <div class="row">
+      <Dropdown ref="dropdownRef" placement="bottom" trigger="hover" hide-on-click @command="(e) => console.log(e)">
+        <template #default>
+          <Button plain>
+            dropdown
+          </Button>
+        </template>
+        <template #dropdown>
+          <DropdownItem command="1">
+            item 1
+          </DropdownItem>
+          <DropdownItem command="2">
+            item 2
+          </DropdownItem>
+          <DropdownItem command="3">
+            item 3
+          </DropdownItem>
+          <DropdownItem command="4" divided>
+            item 4
+          </DropdownItem>
+          <DropdownItem disabled>
+            item 5
+          </DropdownItem>
+        </template>
+      </Dropdown>
+      <Button @click="showDropdown">
+        show
+      </Button>
+      <Button @click="hideDropdown">
+        hide
+      </Button>
+    </div>
+    <div class="row">
       <Tooltip
-        ref="tooltipRef" :trigger="triggerMode" placement="right" content="Vite" :manual="manual"
+        ref="tooltipRef" trigger="hover" placement="right" content="Hello Vite" :manual="manual"
         :floating-options="{ placement: 'right', strategy: 'absolute' }"
-        :show-after="0" :hide-after="0"
       >
         <img src="./assets/vite-log.svg" alt="" width="125" height="125" style="border: 1px solid black;">
       </Tooltip>
@@ -131,7 +167,7 @@ function toggleManual() {
     </div>
     <Icon icon="arrow-up" color="purple" :size="size" spin></Icon>
     <div class="row">
-      <Alert ref="alertRef" type="primary" title="title" description="description" @close="handleClose"></Alert>
+      <Alert ref="alertRef" type="primary" title="title" description="description" @close="(e) => console.log(e)"></Alert>
     </div>
     <div class="row">
       <Alert type="success" title="title" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid labore ratione porro similique natus impedit ad sequi esse, maxime voluptatibus molestias fugiat laboriosam voluptatem quasi dolor modi quo fugit provident ipsum, illo beatae magnam cum. Nulla deserunt magni similique debitis esse nemo dicta repellendus, possimus vero iusto, illum cumque ea!" :show-icon="true" center></Alert>
