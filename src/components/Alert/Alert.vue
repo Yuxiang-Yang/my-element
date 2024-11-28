@@ -7,9 +7,9 @@ const { type = 'info', effect = 'light', showIcon = false } = defineProps<AlertP
 const emit = defineEmits<AlertEmits>()
 
 defineExpose({ close })
-const visiable = ref(true)
+const visible = ref(true)
 function close(event: MouseEvent) {
-  visiable.value = false
+  visible.value = false
   emit('close', event)
 }
 
@@ -27,7 +27,7 @@ const iconName = computed(() => {
 
 <template>
   <Transition name="fade">
-    <div v-show="visiable" class="ch-alert" :class="{ [`ch-alert--${type}`]: type, [`is-${effect}`]: effect, 'is-center': center }">
+    <div v-show="visible" class="ch-alert" :class="{ [`ch-alert--${type}`]: type, [`is-${effect}`]: effect, 'is-center': center }">
       <Icon v-if="showIcon" :icon="iconName" size="sm" class="ch-alert__icon" :class="{ 'is-big': description }"></Icon>
       <div class="ch-alert__content">
         <span class="ch-alert__title" :class="{ 'with-description': description }">
