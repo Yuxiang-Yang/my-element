@@ -1,0 +1,64 @@
+import { fileURLToPath, URL } from 'node:url'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { componentPreview, containerPreview } from '@vitepress-demo-preview/plugin'
+import { defineConfig } from 'vitepress'
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  title: 'My Element',
+  description: 'A ElementPlus-like component library',
+  vite: {
+    plugins: [
+      vueJsx(),
+    ],
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('../../src', import.meta.url)),
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
+  },
+  vue: {
+
+  },
+  markdown: {
+    config(md) {
+      md.use(containerPreview)
+      md.use(componentPreview)
+    },
+    theme: {
+      light: 'one-light',
+      dark: 'one-dark-pro',
+    },
+  },
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Examples', link: '/markdown-examples' },
+    ],
+    sidebar: [
+      {
+        text: 'Examples',
+        items: [
+          { text: 'Markdown Examples', link: '/markdown-examples' },
+          { text: 'Runtime API Examples', link: '/api-examples' },
+        ],
+      },
+      {
+        text: 'Basic',
+        items: [
+          { text: 'Button', link: '/components/Button' },
+        ],
+      },
+    ],
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+    ],
+  },
+})
