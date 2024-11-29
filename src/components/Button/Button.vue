@@ -36,7 +36,4 @@ defineExpose({
 </template>
 
 <style>
-.ch-button {
-  background-color: var(--main-bg-color);
-}
 </style>
