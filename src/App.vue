@@ -3,7 +3,7 @@ import type { AlertInstance } from './components/Alert/types'
 import type { ButtonInstance } from './components/Button/types'
 import type { NameType } from './components/Collapse/types'
 import type { Command } from './components/Dropdown/types'
-import { onMounted, ref, useTemplateRef } from 'vue'
+import { nextTick, onMounted, ref, useTemplateRef } from 'vue'
 import Alert from './components/Alert/Alert.vue'
 import Button from './components/Button/Button.vue'
 import Collapse from './components/Collapse/Collapse.vue'
@@ -11,19 +11,25 @@ import Item from './components/Collapse/CollapseItem.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Icon from './components/Icon/Icon.vue'
+import { createMessage } from './components/Message/method'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
 const alertRef = useTemplateRef<AlertInstance>('alertRef')
 onMounted(() => {
   console.log(buttonRef.value?.ref)
+  // createMessage({ message: 'hello message', duration: 2000, type: 'success', showClose: true })
+  createMessage({ message: 'hello message success', duration: 0, type: 'success', showClose: true })
+  createMessage({ message: 'hello message info', duration: 0, type: 'info', showClose: true })
+  createMessage({ message: 'hello message warning', duration: 0, type: 'warning', showClose: true })
+  createMessage({ message: 'hello message error', duration: 0, type: 'error', showClose: true })
 })
 setTimeout(() => {
   alertRef.value?.close()
 }, 3000)
 
-function testClick(e: MouseEvent) {
-  console.log(e)
+function testClick() {
+  createMessage({ message: 'hello message success', duration: 2000, type: 'success', showClose: true })
 }
 
 const activeNames = ref<NameType[]>(['a'])
@@ -96,7 +102,7 @@ function hideDropdown() {
       </Tooltip>
     </div>
     <Button ref="buttonRef" type="primary" @click="testClick">
-      Test Button
+      message
     </Button>
     <div class="row">
       <Button plain @click="showPopper">

@@ -1,0 +1,66 @@
+.ch-message {
+  --ch-message-bg-color: var(--ch-color-info-light-9);
+  --ch-message-border-color: var(--ch-border-color-lighter);
+  --ch-message-padding: 12px 12px;
+  --ch-message-icon-size: 16px;
+  --ch-message-close-size: 16px;
+  --ch-message-close-icon-color: var(--ch-text-color-placeholder);
+  --ch-message-close-hover-color: var(--ch-text-color-secondary);
+}
+.ch-message {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: var(--ch-border-radius-base);
+  border-width: var(--ch-border-width);
+  border-style: var(--ch-border-style);
+  border-color: var(--ch-message-border-color);
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  background-color: var(--ch-message-bg-color);
+  padding: var(--ch-message-padding);
+  display: flex;
+  align-items: center;
+  transition:
+    top var(--ch-transition-duration),
+    opacity var(--ch-transition-duration),
+    transform var(--ch-transition-duration);
+  .ch-message__icon {
+    width: var(--ch-message-icon-size);
+    transform: scale(1.1);
+    margin-right: 8px;
+  }
+  .ch-message__content {
+    color: var(--ch-message-text-color);
+    overflow-wrap: anywhere;
+  }
+  &.is-close .ch-message__content {
+    padding-right: 15px;
+  }
+  .ch-message__close {
+    display: flex;
+    align-items: center;
+  }
+  .ch-message__close svg {
+    cursor: pointer;
+  }
+}
+$types: success, info, warning, error;
+@each $type in $types {
+  .ch-message--#{$type} {
+    --ch-message-bg-color: var(--ch-color-#{$type}-light-9);
+    --ch-message-border-color: var(--ch-color-#{$type}-light-8);
+    --ch-message-text-color: var(--ch-color-#{$type});
+    .ch-message__icon,
+    .ch-message__close {
+      --ch-icon-color: var(--ch-color-#{$type});
+    }
+  }
+}
+.ch-message.fade-up-enter-from,
+.ch-message.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -60%);
+}
