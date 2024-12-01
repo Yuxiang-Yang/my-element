@@ -51,9 +51,15 @@ export default defineConfig({
         ],
       },
       {
-        text: 'Basic',
+        text: 'Basic 基础组件',
         items: [
-          { text: 'Button', link: '/components/Button' },
+          { text: 'Button 按钮', link: '/components/Button' },
+        ],
+      },
+      {
+        text: 'Form 表单组件',
+        items: [
+          { text: 'Input 输入框', link: '/components/Input' },
         ],
       },
     ],
