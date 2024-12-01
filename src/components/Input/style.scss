@@ -1,0 +1,228 @@
+.ch-input {
+  --ch-input-text-color: var(--ch-text-color-regular);
+  --ch-input-border: var(--ch-border);
+  --ch-input-hover-border: var(--ch-border-color-hover);
+  --ch-input-focus-border: var(--ch-color-primary);
+  --ch-input-transparent-border: 0 0 0 1px transparent inset;
+  --ch-input-border-color: var(--ch-border-color);
+  --ch-input-border-radius: var(--ch-border-radius-base);
+  --ch-input-bg-color: var(--ch-fill-color-blank);
+  --ch-input-icon-color: var(--ch-text-color-placeholder);
+  --ch-input-placeholder-color: var(--ch-text-color-placeholder);
+  --ch-input-hover-border-color: var(--ch-border-color-hover);
+  --ch-input-clear-hover-color: var(--ch-text-color-secondary);
+  --ch-input-focus-border-color: var(--ch-color-primary);
+}
+
+.ch-input {
+  --ch-input-height: var(--ch-component-size);
+  position: relative;
+  font-size: var(--ch-font-size-base);
+  display: inline-flex;
+  width: 100%;
+  line-height: var(--ch-input-height);
+  box-sizing: border-box;
+  vertical-align: middle;
+  &.is-disabled {
+    cursor: not-allowed;
+    .ch-input__wrapper {
+      background-color: var(--ch-disabled-bg-color);
+      box-shadow: 0 0 0 1px var(--ch-disabled-border-color) inset;
+    }
+    .ch-input__inner {
+      color: var(--ch-disabled-text-color);
+      -webkit-text-fill-color: var(--ch-disabled-text-color);
+      cursor: not-allowed;
+    }
+    .ch-textarea__inner {
+      background-color: var(--ch-disabled-bg-color);
+      box-shadow: 0 0 0 1px var(--ch-disabled-border-color) inset;
+      color: var(--ch-disabled-text-color);
+      -webkit-text-fill-color: var(--ch-disabled-text-color);
+      cursor: not-allowed;
+    }
+  }
+  &.is-prepend {
+    > .ch-input__wrapper {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  &.is-append {
+    > .ch-input__wrapper {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.ch-input--large {
+  --ch-input-height: var(--ch-component-size-large);
+  font-size: 14px;
+  .ch-input__wrapper {
+    padding: 1px 15px;
+    .ch-input__inner {
+      --ch-input-inner-height: calc(var(--ch-input-height, 40px) - 2px);
+    }
+  }
+}
+.ch-input--small {
+  --ch-input-height: var(--ch-component-size-small);
+  font-size: 12px;
+  .ch-input__wrapper {
+    padding: 1px 7px;
+    .ch-input__inner {
+      --ch-input-inner-height: calc(var(--ch-input-height, 24px) - 2px);
+    }
+  }
+}
+.ch-input__prefix,
+.ch-input__suffix {
+  display: inline-flex;
+  white-space: nowrap;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  height: 100%;
+  text-align: center;
+  color: var(--ch-input-icon-color, var(--ch-text-color-placeholder));
+  transition: all var(--ch-transition-duration);
+}
+.ch-input__prefix {
+  > :first-child {
+    margin-left: 0px !important;
+  }
+  > :last-child {
+    margin-right: 8px !important;
+  }
+}
+.ch-input__suffix {
+  > :first-child {
+    margin-left: 8px !important;
+  }
+  > :last-child {
+    margin-right: 0px !important;
+  }
+}
+.ch-input__prepend,
+.ch-input__append {
+  background-color: var(--ch-fill-color-light);
+  color: var(--ch-color-info);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  border-radius: var(--ch-input-border-radius);
+  padding: 0 20px;
+  white-space: nowrap;
+}
+.ch-input__prepend {
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow:
+    1px 0 0 0 var(--ch-input-border-color) inset,
+    0 1px 0 0 var(--ch-input-border-color) inset,
+    0 -1px 0 0 var(--ch-input-border-color) inset;
+}
+.ch-input__append {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow:
+    0 1px 0 0 var(--ch-input-border-color) inset,
+    0 -1px 0 0 var(--ch-input-border-color) inset,
+    -1px 0 0 0 var(--ch-input-border-color) inset;
+  & > .ch-input__wrapper {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.ch-input--textarea {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: bottom;
+  font-size: var(--ch-font-size-base);
+}
+.ch-textarea__wrapper {
+  position: relative;
+  display: block;
+  resize: vertical;
+  padding: 5px 11px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: inherit;
+  font-family: inherit;
+  color: var(--ch-input-text-color, var(--ch-text-color-regular));
+  background-color: var(--ch-input-bg-color, var(--ch-fill-color-blank));
+  background-image: none;
+  -webkit-appearance: none;
+  box-shadow: 0 0 0 1px var(--ch-input-border-color, var(--ch-border-color)) inset;
+  border-radius: var(--ch-input-border-radius, var(--ch-border-radius-base));
+  transition: var(--ch-transition-box-shadow);
+  border: none;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px var(--ch-input-focus-border-color) inset;
+  }
+  &::placeholder {
+    color: var(--ch-input-placeholder-color);
+  }
+}
+.ch-input__wrapper {
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 11px;
+  background-color: var(--ch-input-bg-color, var(--ch-fill-color-blank));
+  background-image: none;
+  border-radius: var(--ch-input-border-radius, var(--ch-border-radius-base));
+  transition: var(--ch-transition-box-shadow);
+  box-shadow: 0 0 0 1px var(--ch-input-border-color, var(--ch-border-color)) inset;
+  &:hover {
+    box-shadow: 0 0 0 1px var(--ch-input-hover-border-color) inset;
+  }
+  &.is-focus {
+    box-shadow: 0 0 0 1px var(--ch-input-focus-border-color) inset;
+  }
+  .ch-input__inner {
+    --ch-input-inner-height: calc(var(--ch-input-height, 32px) - 2px);
+    width: 100%;
+    flex-grow: 1;
+    -webkit-appearance: none;
+    color: var(--ch-input-text-color, var(--ch-text-color-regular));
+    font-size: inherit;
+    height: var(--ch-input-inner-height);
+    line-height: var(--ch-input-inner-height);
+    padding: 0;
+    outline: none;
+    border: none;
+    background: none;
+    box-sizing: border-box;
+    &::placeholder {
+      color: var(--ch-input-placeholder-color);
+    }
+  }
+  .ch-icon {
+    height: inherit;
+    line-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all var(--ch-transition-duration);
+    margin-left: 8px;
+  }
+  .ch-input__clear,
+  .ch-input__password {
+    color: var(--ch-input-icon-color);
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      color: var(--ch-input-clear-hover-color);
+    }
+  }
+}

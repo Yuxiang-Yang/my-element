@@ -11,6 +11,7 @@ import Item from './components/Collapse/CollapseItem.vue'
 import Dropdown from './components/Dropdown/Dropdown.vue'
 import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Icon from './components/Icon/Icon.vue'
+import Input from './components/Input/Input.vue'
 import { createMessage } from './components/Message/method'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
@@ -57,10 +58,17 @@ function showDropdown() {
 function hideDropdown() {
   dropdownRef.value?.hide()
 }
+
+const inputText = ref('test')
+const inputRef = useTemplateRef('inputRef')
+onMounted(() => console.log(inputRef.value?.ref))
 </script>
 
 <template>
   <div>
+    <div class="row">
+      <Input ref="inputRef" v-model="inputText" type="password" show-password clearable></Input>
+    </div>
     <div class="row">
       <Dropdown ref="dropdownRef" placement="bottom" trigger="hover" hide-on-click @command="(e) => console.log(e)">
         <template #default>
