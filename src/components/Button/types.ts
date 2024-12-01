@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
 export type Size = 'large' | 'default' | 'small'
 export type NativeType = 'button' | 'submit' | 'reset'
@@ -16,5 +18,5 @@ export interface ButtonProps {
 }
 
 export interface ButtonInstance {
-  ref: HTMLButtonElement
+  ref: Ref<HTMLButtonElement | null>
 }

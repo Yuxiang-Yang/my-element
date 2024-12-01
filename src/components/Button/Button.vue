@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonProps } from './types.ts'
+import type { ButtonInstance, ButtonProps } from './types.ts'
 import { useTemplateRef } from 'vue'
 import Icon from '../Icon/Icon.vue'
 
@@ -7,7 +7,7 @@ defineOptions({ name: 'CHButton' })
 const { nativeType = 'button' } = defineProps<ButtonProps>()
 
 const _ref = useTemplateRef('_ref')
-defineExpose({
+defineExpose<ButtonInstance>({
   ref: _ref,
 })
 </script>
