@@ -13,6 +13,7 @@ import DropdownItem from './components/Dropdown/DropdownItem.vue'
 import Icon from './components/Icon/Icon.vue'
 import Input from './components/Input/Input.vue'
 import { createMessage } from './components/Message/method'
+import Switch from './components/Switch/Switch.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
 const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
@@ -62,10 +63,15 @@ function hideDropdown() {
 const inputText = ref('test')
 const inputRef = useTemplateRef('inputRef')
 onMounted(() => console.log(inputRef.value?.ref))
+
+const switchValue = ref('right')
 </script>
 
 <template>
   <div>
+    <div class="row">
+      <Switch v-model="switchValue" active-value="right" inactive-value="wrong" aaa="right" />
+    </div>
     <div class="row">
       <Input ref="inputRef" v-model="inputText" type="password" show-password clearable></Input>
     </div>
