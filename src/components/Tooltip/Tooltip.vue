@@ -78,15 +78,15 @@ function close() {
   isOpen.value = false
   emit('visibleChange', false)
 }
-const deboucedOpen = debounce(open, showAfter)
-const deboucedClose = debounce(close, hideAfter)
+const debouncedOpen = debounce(open, showAfter)
+const debouncedClose = debounce(close, hideAfter)
 function openFinal() {
-  deboucedClose.cancel()
-  deboucedOpen()
+  debouncedClose.cancel()
+  debouncedOpen()
 }
 function closeFinal() {
-  deboucedOpen.cancel()
-  deboucedClose()
+  debouncedOpen.cancel()
+  debouncedClose()
 }
 function toggle() {
   if (isOpen.value) {
