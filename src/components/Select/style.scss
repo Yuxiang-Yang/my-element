@@ -1,0 +1,85 @@
+.ch-select {
+  --ch-select-item-hover-bg-color: var(--ch-fill-color-light);
+  --ch-select-item-font-size: var(--ch-font-size-base);
+  --ch-select-item-font-color: var(--ch-text-color-regular);
+  --ch-select-item-selected-font-color: var(--ch-color-primary);
+  --ch-select-item-disabled-font-color: var(--ch-text-color-placeholder);
+  --ch-select-input-focus-border-color: var(--ch-color-primary);
+}
+.ch-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  .ch-tooltip .ch-tooltip__popper {
+    padding: 0;
+  }
+  .ch-input.is-focus .ch-input__wrapper {
+    box-shadow: 0 0 0 1px var(--ch-select-input-focus-border-color) inset !important;
+  }
+  .ch-input__inner {
+    cursor: pointer;
+  }
+  .ch-select__nodata,
+  .ch-select__loading {
+    padding: 10px 0;
+    margin: 0 0 -6px 0;
+    text-align: center;
+    color: var(--ch-text-color-secondary);
+    font-size: var(--ch-select-item-font-size);
+  }
+  .ch-input {
+    .ch-icon {
+      width: 13px;
+    }
+    .ch-select__caret {
+      transition: transform var(--ch-transition-duration);
+      &.is-active {
+        transform: rotate(180deg);
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .ch-tooltip__popper {
+    box-shadow: var(--ch-box-shadow-light);
+    border: none;
+  }
+  .ch-select-dropdown__list {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .ch-select-dropdown__item {
+    margin: 0;
+    font-size: var(--ch-select-item-font-size);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--ch-select-item-font-color);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--ch-select-item-hover-bg-color);
+    }
+    &.is-selected {
+      color: var(--ch-select-item-selected-font-color);
+      font-weight: 700;
+    }
+    &.is-hovering {
+      background-color: var(--ch-select-item-hover-bg-color);
+    }
+    &.is-disabled {
+      color: var(--ch-select-item-disabled-font-color);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
