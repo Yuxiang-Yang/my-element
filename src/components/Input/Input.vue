@@ -79,11 +79,21 @@ defineExpose<InputInstance>({ ref: _ref })
         </span>
         <!-- input -->
         <input
-          ref="inputRef" v-model="inputValue" class="ch-input__inner" :disabled="disabled"
+          ref="inputRef"
+          v-model="inputValue"
+          v-bind="$attrs"
+          class="ch-input__inner"
+          :disabled="disabled"
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
-          v-bind="$attrs" :readonly="readonly" :autocomplete="autocomplete"
-          :placeholder="placeholder" :autofocus="autofocus" :form="form"
-          @focus="handleFocus" @blur="handleBlur" @input="handleInput" @change="handleChange"
+          :readonly="readonly"
+          :autocomplete="autocomplete"
+          :placeholder="placeholder"
+          :autofocus="autofocus"
+          :form="form"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @input="handleInput"
+          @change="handleChange"
         />
         <!-- suffix slot -->
         <span v-if="$slots.suffix || showClear || showPasswordIcon" class="ch-input__suffix" @click="keepFocus">
