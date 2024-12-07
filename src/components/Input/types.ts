@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 
 export interface InputProps {
   type?: 'text' | 'password' | 'textarea'
-  modelValue: string
+  modelValue: string | number | null | undefined
   size?: 'large' | 'small'
   clearable?: boolean
   showPassword?: boolean
