@@ -3,7 +3,7 @@ import type { Placement, Side } from '@floating-ui/vue'
 import type { CSSProperties, Ref } from 'vue'
 import type { TooltipEmits, TooltipInstance, TooltipProps } from './types'
 import { useClickOutside } from '@/composables/useClickOutside'
-import { arrow, autoUpdate, flip, offset, shift, useFloating } from '@floating-ui/vue'
+import { arrow, autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/vue'
 import { debounce } from 'lodash-es'
 import { computed, ref, useTemplateRef, watch } from 'vue'
 
@@ -14,6 +14,7 @@ const {
   trigger = 'click',
   manual,
   floatingOptions,
+  sameWidth = false,
   transition = 'fade',
   showAfter = 0,
   hideAfter = 200,
@@ -25,10 +26,20 @@ const triggerNode = useTemplateRef('triggerNode')
 const popperNode = useTemplateRef('popperNode')
 const arrowNode = useTemplateRef('arrowNode')
 const mergedOptions = computed(() => {
+  const middleware = [flip(), shift(), offset(10), arrow({ element: arrowNode })]
+  if (sameWidth) {
+    middleware.push(size({
+      apply({ rects, elements }) {
+        Object.assign(elements.floating.style, {
+          minWidth: `${rects.reference.width}px`,
+        })
+      },
+    }))
+  }
   return {
     whileElementsMounted: autoUpdate,
     placement,
-    middleware: [flip(), shift(), offset(10), arrow({ element: arrowNode })],
+    middleware,
     ...floatingOptions,
   }
 })
@@ -114,15 +125,18 @@ function clearEvents() {
   triggerEventsOuter.value = {}
   popperEvents.value = {}
 }
-if (!manual && !disabled) {
-  attachEvents()
-  const popperContainerNode = useTemplateRef('popperContainerNode')
-  useClickOutside(popperContainerNode, () => {
-    if (trigger === 'click' && isOpen.value && !manual) {
-      closeFinal()
-    }
-  })
-}
+
+attachEvents()
+const popperContainerNode = useTemplateRef('popperContainerNode')
+useClickOutside(popperContainerNode, () => {
+  if (trigger === 'click' && isOpen.value && !manual) {
+    closeFinal()
+  }
+  if (isOpen.value) {
+    emit('clickOutside', true)
+  }
+})
+
 watch(() => manual, () => {
   if (manual) {
     clearEvents()
@@ -156,8 +170,12 @@ defineExpose<TooltipInstance>({ show: openFinal, hide: closeFinal })
     </div>
     <Transition :name="transition">
       <div
-        v-if="isOpen" ref="popperNode" class="ch-tooltip__popper" :class="{ 'is-dark': effect === 'dark' }"
-        :style="floatingStyles" v-on="popperEvents"
+        v-show="isOpen"
+        ref="popperNode"
+        class="ch-tooltip__popper"
+        :class="{ 'is-dark': effect === 'dark' }"
+        :style="floatingStyles"
+        v-on="popperEvents"
       >
         <slot name="content">
           {{ content }}

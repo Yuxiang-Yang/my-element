@@ -6,6 +6,7 @@ export interface TooltipProps {
   placement?: Placement
   manual?: boolean
   transition?: string
+  sameWidth?: boolean
   floatingOptions?: UseFloatingOptions
   showAfter?: number
   hideAfter?: number
@@ -14,7 +15,8 @@ export interface TooltipProps {
 }
 
 export interface TooltipEmits {
-  visibleChange: [value: boolean]
+  (e: 'visibleChange', value: boolean): void
+  (e: 'clickOutside', value: boolean): void
 }
 
 export interface TooltipInstance {
