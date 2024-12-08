@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { TriggerEvents } from '../Form/types'
 import type { InputEmits, InputInstance, InputProps } from './types'
-import { computed, nextTick, ref, useTemplateRef } from 'vue'
+import { computed, inject, nextTick, ref, useTemplateRef } from 'vue'
+import { FORM_ITEM_CTX_KEY } from '../Form/constants'
 import Icon from '../Icon/Icon.vue'
 
 defineOptions({
@@ -16,10 +18,16 @@ const _ref = computed(() => inputRef.value || textareaRef.value)
 
 const inputValue = defineModel<string | number | null>()
 
+const formItem = inject(FORM_ITEM_CTX_KEY)
+function executeValidation(trigger?: TriggerEvents) {
+  formItem?.validate(trigger).catch(() => { })
+}
+
 const isFocus = ref(false)
 const showClear = computed(() => clearable && !disabled && inputValue.value && isFocus.value)
 function handleInput(event: Event) {
   emit('input', (event.target as HTMLInputElement).value)
+  executeValidation('input')
 }
 function handleFocus(event: FocusEvent) {
   isFocus.value = true
@@ -28,6 +36,7 @@ function handleFocus(event: FocusEvent) {
 function handleBlur(event: FocusEvent) {
   isFocus.value = false
   emit('blur', event)
+  executeValidation('blur')
 }
 function clearInput() {
   inputValue.value = ''
@@ -37,6 +46,7 @@ function clearInput() {
 }
 function handleChange(event: Event) {
   emit('change', (event.target as HTMLInputElement).value)
+  executeValidation('change')
 }
 async function keepFocus() {
   await nextTick()
