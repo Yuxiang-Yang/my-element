@@ -13,10 +13,13 @@ importers:
         version: 1.1.5(vue@3.5.13(typescript@5.6.3))
       '@vitepress-demo-preview/component':
         specifier: ^2.3.2
-        version: 2.3.2(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))
+        version: 2.3.2(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))
       '@vitepress-demo-preview/plugin':
         specifier: ^1.2.3
-        version: 1.2.3(markdown-it-container@3.0.0)(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))
+        version: 1.2.3(markdown-it-container@3.0.0)(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))
+      async-validator:
+        specifier: ^4.2.5
+        version: 4.2.5
       axios:
         specifier: ^1.7.7
         version: 1.7.7
@@ -104,7 +107,7 @@ importers:
         version: 7.6.4(rollup@4.27.2)(vite@5.4.11(@types/node@22.9.0)(sass-embedded@1.81.0)(sass@1.81.0))(vue@3.5.13(typescript@5.6.3))
       vitepress:
         specifier: ^1.5.0
-        version: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
+        version: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
       vitest:
         specifier: ^2.1.5
         version: 2.1.5(@types/node@22.9.0)(jsdom@25.0.1)(sass-embedded@1.81.0)(sass@1.81.0)
@@ -1410,6 +1413,9 @@ packages:
   assertion-error@2.0.1:
     resolution: {integrity: sha512-Izi8RQcffqCeNVgFigKli1ssklIbpHnCYc6AknXGYoB6grJqyeby7jv12JUQgmTAnIDnbck1uxksT4dzN3PWBA==}
     engines: {node: '>=12'}
+
+  async-validator@4.2.5:
+    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
@@ -4584,17 +4590,17 @@ snapshots:
       vite: 5.4.11(@types/node@22.9.0)(sass-embedded@1.81.0)(sass@1.81.0)
       vue: 3.5.13(typescript@5.6.3)
 
-  '@vitepress-demo-preview/component@2.3.2(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))':
+  '@vitepress-demo-preview/component@2.3.2(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))':
     dependencies:
-      vitepress: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
+      vitepress: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
       vue: 3.5.13(typescript@5.6.3)
 
-  '@vitepress-demo-preview/plugin@1.2.3(markdown-it-container@3.0.0)(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))':
+  '@vitepress-demo-preview/plugin@1.2.3(markdown-it-container@3.0.0)(vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3))(vue@3.5.13(typescript@5.6.3))':
     dependencies:
       '@flypeng/tool': 5.5.4
       markdown-it: 13.0.2
       markdown-it-container: 3.0.0
-      vitepress: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
+      vitepress: 1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3)
       vue: 3.5.13(typescript@5.6.3)
 
   '@vitest/eslint-plugin@1.1.10(@typescript-eslint/utils@8.15.0(eslint@9.15.0)(typescript@5.6.3))(eslint@9.15.0)(typescript@5.6.3)(vitest@2.1.5(@types/node@22.9.0)(jsdom@25.0.1)(sass-embedded@1.81.0)(sass@1.81.0))':
@@ -4834,12 +4840,13 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/integrations@11.3.0(axios@1.7.7)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.6.3))':
+  '@vueuse/integrations@11.3.0(async-validator@4.2.5)(axios@1.7.7)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.6.3))':
     dependencies:
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.6.3))
       '@vueuse/shared': 11.3.0(vue@3.5.13(typescript@5.6.3))
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.6.3))
     optionalDependencies:
+      async-validator: 4.2.5
       axios: 1.7.7
       focus-trap: 7.6.2
     transitivePeerDependencies:
@@ -4913,6 +4920,8 @@ snapshots:
   argparse@2.0.1: {}
 
   assertion-error@2.0.1: {}
+
+  async-validator@4.2.5: {}
 
   asynckit@0.4.0: {}
 
@@ -7061,7 +7070,7 @@ snapshots:
       sass: 1.81.0
       sass-embedded: 1.81.0
 
-  vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3):
+  vitepress@1.5.0(@algolia/client-search@5.15.0)(@types/node@22.9.0)(async-validator@4.2.5)(axios@1.7.7)(postcss@8.4.49)(sass-embedded@1.81.0)(sass@1.81.0)(search-insights@2.17.3)(typescript@5.6.3):
     dependencies:
       '@docsearch/css': 3.8.0
       '@docsearch/js': 3.8.0(@algolia/client-search@5.15.0)(search-insights@2.17.3)
@@ -7074,7 +7083,7 @@ snapshots:
       '@vue/devtools-api': 7.6.7
       '@vue/shared': 3.5.13
       '@vueuse/core': 11.3.0(vue@3.5.13(typescript@5.6.3))
-      '@vueuse/integrations': 11.3.0(axios@1.7.7)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.6.3))
+      '@vueuse/integrations': 11.3.0(async-validator@4.2.5)(axios@1.7.7)(focus-trap@7.6.2)(vue@3.5.13(typescript@5.6.3))
       focus-trap: 7.6.2
       mark.js: 8.11.1
       minisearch: 7.1.1
