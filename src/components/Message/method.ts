@@ -1,7 +1,7 @@
 import type { CreateMessageProps, MessageInstance } from './types'
 import { useZIndex } from '@/composables/useZIndex'
 import { h, render, shallowReactive } from 'vue'
-import Message from './Message.vue'
+import MessageComp from './Message.vue'
 
 let seed = 1
 const instances: MessageInstance[] = shallowReactive([])
@@ -31,7 +31,7 @@ export function createMessage(props: CreateMessageProps) {
     zIndex: nextZIndex(),
     onDestroy: destroy,
   }
-  const vnode = h(Message, newProps)
+  const vnode = h(MessageComp, newProps)
   render(vnode, container)
   document.body.appendChild(container.firstElementChild!)
   const vm = vnode.component!
@@ -65,4 +65,11 @@ export function closeAll() {
   instances.forEach((instance) => {
     instance.destroy()
   })
+}
+
+export default function Message(options = {}) {
+  const instance = createMessage(options)
+  const close = () => instance.destroy()
+
+  return close
 }
