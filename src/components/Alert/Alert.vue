@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { AlertEmits, AlertProps, AlertType } from './types'
+import type { AlertEmits, AlertInstance, AlertProps, AlertType } from './types'
 import { computed, ref } from 'vue'
 import Icon from '../Icon/Icon.vue'
+
+defineOptions({
+  name: 'ChAlert',
+})
 
 const { type = 'info', effect = 'light', showIcon = false } = defineProps<AlertProps>()
 const emit = defineEmits<AlertEmits>()
 
-defineExpose({ close })
 const visible = ref(true)
-function close(event: MouseEvent) {
-  visible.value = false
-  emit('close', event)
-}
 
 const typeIconMap: Record<AlertType, string> = {
   primary: 'copyright',
@@ -23,6 +22,17 @@ const typeIconMap: Record<AlertType, string> = {
 const iconName = computed(() => {
   return typeIconMap[type]
 })
+
+function open() {
+  visible.value = true
+  emit('open')
+}
+function close() {
+  visible.value = false
+  emit('close')
+}
+
+defineExpose<AlertInstance>({ open, close })
 </script>
 
 <template>

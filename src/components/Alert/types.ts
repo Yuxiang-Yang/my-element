@@ -13,9 +13,11 @@ export interface AlertProps {
 }
 
 export interface AlertEmits {
-  close: [event: MouseEvent]
+  (e: 'open'): void
+  (e: 'close'): void
 }
 
 export interface AlertInstance {
+  open: () => void
   close: () => void
 }
