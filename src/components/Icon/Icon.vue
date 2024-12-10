@@ -5,9 +5,10 @@ import { omit } from 'lodash-es'
 import { computed } from 'vue'
 
 defineOptions({
-  name: 'CHIcon',
+  name: 'ChIcon',
   inheritAttrs: false,
 })
+
 const props = defineProps<IconProps>()
 const filteredProps = computed(() => omit(props, ['type', 'color']))
 const customStyles = computed(() => {

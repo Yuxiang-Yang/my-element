@@ -4,7 +4,7 @@ import { inject } from 'vue'
 import { DROPDOWN_CTX_KEY } from './constants'
 
 defineOptions({
-  name: 'CHDropdownItem',
+  name: 'ChDropdownItem',
 })
 
 const { disabled, divided, command = '' } = defineProps<DropdownItemProps>()

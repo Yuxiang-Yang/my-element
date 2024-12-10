@@ -6,6 +6,10 @@ import { RenderVNode } from '../Common/RenderVNode'
 import Icon from '../Icon/Icon.vue'
 import { getLastBottomOffset } from './method'
 
+defineOptions({
+  name: 'ChMessage',
+})
+
 const {
   message,
   type = 'info',

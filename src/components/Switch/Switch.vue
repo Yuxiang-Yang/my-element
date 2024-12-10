@@ -3,7 +3,7 @@ import type { SwitchEmits, SwitchProps } from './types'
 import { computed } from 'vue'
 
 defineOptions({
-  name: 'CHSwitch',
+  name: 'ChSwitch',
   inheritAttrs: false,
 })
 

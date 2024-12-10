@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import type { SelectContext, SelectOptionContext, SelectOptionProps, SelectOptionProxy, SelectValue } from './types'
+import type { SelectContext, SelectOptionContext, SelectOptionProps } from './types'
 import { escapeStringRegexp } from '@/utils/strings'
-import { computed, getCurrentInstance, inject, onBeforeUnmount, reactive, toRefs, watch } from 'vue'
+import { getCurrentInstance, inject, onBeforeUnmount, reactive, watch } from 'vue'
 import { SELECT_CTX_KEY } from './constants'
+
+defineOptions({
+  name: 'ChOption',
+})
 
 const { label, value, disabled = false } = defineProps<SelectOptionProps>()
 const select = inject<SelectContext>(SELECT_CTX_KEY)!
-// const { selectedOption } = toRefs(select!.states)
-// const isSelected = computed(() => selectedOption.value && selectedOption.value.value === value)
+
 const states = reactive({
   visible: true,
   hover: false,

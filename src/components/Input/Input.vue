@@ -6,9 +6,10 @@ import { FORM_ITEM_CTX_KEY } from '../Form/constants'
 import Icon from '../Icon/Icon.vue'
 
 defineOptions({
-  name: 'CHInput',
+  name: 'ChInput',
   inheritAttrs: false,
 })
+
 const { type = 'text', size, clearable, disabled, showPassword, autocomplete = 'off' } = defineProps<InputProps>()
 const emit = defineEmits<InputEmits>()
 

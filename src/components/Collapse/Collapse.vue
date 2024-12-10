@@ -3,6 +3,10 @@ import type { CollapseEmits, CollapseProps, NameType } from './types'
 import { provide, ref, watch } from 'vue'
 import { collapseContextKey } from './constants'
 
+defineOptions({
+  name: 'ChCollapse',
+})
+
 const props = defineProps<CollapseProps>()
 const emit = defineEmits<CollapseEmits>()
 const activeNames = ref<NameType[]>(props.modelValue)

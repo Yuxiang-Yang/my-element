@@ -6,6 +6,7 @@ import { FORM_CTX_KEY } from './constants'
 defineOptions({
   name: 'ChForm',
 })
+
 const { model, rules } = defineProps<FormProps>()
 
 const fields = reactive<Map<string, FormItemContext>>(new Map())

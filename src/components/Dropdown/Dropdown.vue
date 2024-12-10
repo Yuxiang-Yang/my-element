@@ -6,7 +6,7 @@ import Tooltip from '../Tooltip/Tooltip.vue'
 import { DROPDOWN_CTX_KEY } from './constants'
 
 defineOptions({
-  name: 'CHDropdown',
+  name: 'ChDropdown',
 })
 
 const { effect = 'light', hideOnClick, showAfter, hideAfter } = defineProps<DropdownProps>()

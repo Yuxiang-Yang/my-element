@@ -8,8 +8,9 @@ import Tooltip from '../Tooltip/Tooltip.vue'
 import { SELECT_CTX_KEY } from './constants'
 
 defineOptions({
-  name: 'CHSelect',
+  name: 'ChSelect',
 })
+
 const {
   modelValue,
   disabled,

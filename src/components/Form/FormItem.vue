@@ -8,6 +8,7 @@ import { FORM_CTX_KEY, FORM_ITEM_CTX_KEY } from './constants'
 defineOptions({
   name: 'ChFromItem',
 })
+
 const { label, prop = '' } = defineProps<FormItemProps>()
 const form = inject<FormContext>(FORM_CTX_KEY)
 

@@ -5,8 +5,9 @@ import { computed, inject } from 'vue'
 import { collapseContextKey } from './constants'
 
 defineOptions({
-  name: 'CHCollapseItem',
+  name: 'ChCollapseItem',
 })
+
 const props = defineProps<CollapseItemProps>()
 const collapseContext = inject(collapseContextKey)
 const isActive = computed(() => {

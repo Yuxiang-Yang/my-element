@@ -7,6 +7,10 @@ import { arrow, autoUpdate, flip, offset, shift, size, useFloating } from '@floa
 import { debounce } from 'lodash-es'
 import { computed, ref, useTemplateRef, watch } from 'vue'
 
+defineOptions({
+  name: 'ChTooltip',
+})
+
 const {
   disabled = false,
   effect = 'dark',
