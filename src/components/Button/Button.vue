@@ -3,18 +3,22 @@ import type { ButtonInstance, ButtonProps } from './types.ts'
 import { useTemplateRef } from 'vue'
 import Icon from '../Icon/Icon.vue'
 
-defineOptions({ name: 'CHButton' })
+defineOptions({
+  name: 'ChButton',
+})
+
 const { nativeType = 'button' } = defineProps<ButtonProps>()
 
-const _ref = useTemplateRef('_ref')
+const buttonRef = useTemplateRef('button')
+
 defineExpose<ButtonInstance>({
-  ref: _ref,
+  ref: buttonRef,
 })
 </script>
 
 <template>
   <button
-    ref="_ref"
+    ref="button"
     class="ch-button"
     :class="{
       [`ch-button--${type}`]: type,
