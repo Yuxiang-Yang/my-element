@@ -19,7 +19,7 @@ const _ref = computed(() => inputRef.value || textareaRef.value)
 
 const inputValue = defineModel<string | number | null>()
 
-const formItem = inject(FORM_ITEM_CTX_KEY)
+const formItem = inject(FORM_ITEM_CTX_KEY, void 0)
 function executeValidation(trigger?: TriggerEvents) {
   formItem?.validate(trigger).catch(() => { })
 }
