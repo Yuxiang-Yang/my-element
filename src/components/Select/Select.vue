@@ -59,8 +59,8 @@ function findOption(value: SelectValue) {
   }
   return result
 }
-const inputRef = useTemplateRef('inputRef')
-const tooltipRef = useTemplateRef('tooltipRef')
+const inputRef = useTemplateRef('input')
+const tooltipRef = useTemplateRef('tooltip')
 const isDropdownShow = ref(false)
 function controlDropdown(show: boolean) {
   if (show) {
@@ -230,7 +230,7 @@ provide<SelectContext>(SELECT_CTX_KEY, { states, handleSelect, onOptionCreate, o
     @click="toggleDropdown"
   >
     <Tooltip
-      ref="tooltipRef"
+      ref="tooltip"
       placement="bottom"
       manual
       :effect="effect"
@@ -244,7 +244,7 @@ provide<SelectContext>(SELECT_CTX_KEY, { states, handleSelect, onOptionCreate, o
         @mouseleave="states.mouseHover = false"
       >
         <Input
-          ref="inputRef"
+          ref="input"
           v-model="states.inputValue"
           :readonly="!filterable || !isDropdownShow"
           :disabled="disabled"

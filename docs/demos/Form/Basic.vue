@@ -3,7 +3,7 @@ import Button from '@/components/Button/Button.vue'
 import Form from '@/components/Form/Form.vue'
 import FormItem from '@/components/Form/FormItem.vue'
 import Input from '@/components/Input/Input.vue'
-import { reactive, ref, useTemplateRef } from 'vue'
+import { reactive, useTemplateRef } from 'vue'
 
 const model = reactive({
   email: '',
@@ -25,7 +25,7 @@ const rules = {
     },
   ],
 }
-const formRef = useTemplateRef('formRef')
+const formRef = useTemplateRef('form')
 async function submit() {
   try {
     await formRef.value.validate()
@@ -38,7 +38,7 @@ function reset() {
 
 <template>
   <div>
-    <Form ref="formRef" :model="model" :rules="rules">
+    <Form ref="form" :model="model" :rules="rules">
       <FormItem label="email" prop="email">
         <Input v-model="model.email"></Input>
       </FormItem>

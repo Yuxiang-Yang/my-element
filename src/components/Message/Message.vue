@@ -22,7 +22,7 @@ const {
 } = defineProps<MessageProps>()
 
 const visible = ref(false)
-const messageRef = useTemplateRef('messageRef')
+const messageRef = useTemplateRef('message')
 const height = ref(0)
 const lastBottomOffset = computed(() => getLastBottomOffset(id))
 const topOffset = computed(() => offset + lastBottomOffset.value)
@@ -77,7 +77,7 @@ defineExpose<MessageCompInstance>({ bottomOffset, visible })
 <template>
   <Transition :name="transitionName" @enter="updateHeight" @after-leave="destroyComponent">
     <div
-      v-show="visible" ref="messageRef" class="ch-message" :class="{ [`ch-message--${type}`]: type, 'is-close': showClose }"
+      v-show="visible" ref="message" class="ch-message" :class="{ [`ch-message--${type}`]: type, 'is-close': showClose }"
       :style="style" role="alert" @mouseenter="clearTimer" @mouseleave="startTimer"
     >
       <Icon :icon="iconName" size="sm" class="ch-message__icon"></Icon>

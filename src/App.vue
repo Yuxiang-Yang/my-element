@@ -16,8 +16,8 @@ import { createMessage } from './components/Message/method'
 import Switch from './components/Switch/Switch.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 
-const buttonRef = useTemplateRef<ButtonInstance>('buttonRef')
-const alertRef = useTemplateRef<AlertInstance>('alertRef')
+const buttonRef = useTemplateRef<ButtonInstance>('button')
+const alertRef = useTemplateRef<AlertInstance>('alert')
 onMounted(() => {
   console.log(buttonRef.value?.ref)
   // createMessage({ message: 'hello message', duration: 2000, type: 'success', showClose: true })
@@ -41,7 +41,7 @@ const size = ref<any>('1x')
 //   size.value = '10x'
 // }, 2000)
 
-const tooltipRef = useTemplateRef('tooltipRef')
+const tooltipRef = useTemplateRef('tooltip')
 function showPopper() {
   tooltipRef.value?.show()
 }
@@ -52,7 +52,7 @@ const manual = ref(false)
 function toggleManual() {
   manual.value = !manual.value
 }
-const dropdownRef = useTemplateRef('dropdownRef')
+const dropdownRef = useTemplateRef('dropdown')
 function showDropdown() {
   dropdownRef.value?.show()
 }
@@ -61,7 +61,7 @@ function hideDropdown() {
 }
 
 const inputText = ref('test')
-const inputRef = useTemplateRef('inputRef')
+const inputRef = useTemplateRef('input')
 onMounted(() => console.log(inputRef.value?.ref))
 
 const switchValue = ref('right')
@@ -73,10 +73,10 @@ const switchValue = ref('right')
       <Switch v-model="switchValue" active-value="right" inactive-value="wrong" aaa="right" />
     </div>
     <div class="row">
-      <Input ref="inputRef" v-model="inputText" type="password" show-password clearable></Input>
+      <Input ref="input" v-model="inputText" type="password" show-password clearable></Input>
     </div>
     <div class="row">
-      <Dropdown ref="dropdownRef" placement="bottom" trigger="hover" hide-on-click @command="(e) => console.log(e)">
+      <Dropdown ref="dropdown" placement="bottom" trigger="hover" hide-on-click @command="(e) => console.log(e)">
         <template #default>
           <Button plain>
             dropdown
@@ -109,13 +109,13 @@ const switchValue = ref('right')
     </div>
     <div class="row">
       <Tooltip
-        ref="tooltipRef" trigger="hover" placement="right" content="Hello Vite" :manual="manual"
+        ref="tooltip" trigger="hover" placement="right" content="Hello Vite" :manual="manual"
         :floating-options="{ placement: 'right', strategy: 'absolute' }"
       >
         <img src="./assets/vite-log.svg" alt="" width="125" height="125" style="border: 1px solid black;">
       </Tooltip>
     </div>
-    <Button ref="buttonRef" type="primary" @click="testClick">
+    <Button ref="button" type="primary" @click="testClick">
       message
     </Button>
     <div class="row">
@@ -187,7 +187,7 @@ const switchValue = ref('right')
     </div>
     <Icon icon="arrow-up" color="purple" :size="size" spin></Icon>
     <div class="row">
-      <Alert ref="alertRef" type="primary" title="title" description="description"></Alert>
+      <Alert ref="alert" type="primary" title="title" description="description"></Alert>
     </div>
     <div class="row">
       <Alert type="success" title="title" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid labore ratione porro similique natus impedit ad sequi esse, maxime voluptatibus molestias fugiat laboriosam voluptatem quasi dolor modi quo fugit provident ipsum, illo beatae magnam cum. Nulla deserunt magni similique debitis esse nemo dicta repellendus, possimus vero iusto, illum cumque ea!" :show-icon="true" center></Alert>

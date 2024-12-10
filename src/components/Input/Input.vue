@@ -13,8 +13,8 @@ defineOptions({
 const { type = 'text', size, clearable, disabled, showPassword, autocomplete = 'off' } = defineProps<InputProps>()
 const emit = defineEmits<InputEmits>()
 
-const inputRef = useTemplateRef('inputRef')
-const textareaRef = useTemplateRef('textareaRef')
+const inputRef = useTemplateRef('input')
+const textareaRef = useTemplateRef('textarea')
 const _ref = computed(() => inputRef.value || textareaRef.value)
 
 const inputValue = defineModel<string | number | null>()
@@ -90,7 +90,7 @@ defineExpose<InputInstance>({ ref: _ref })
         </span>
         <!-- input -->
         <input
-          ref="inputRef"
+          ref="input"
           v-model="inputValue"
           v-bind="$attrs"
           class="ch-input__inner"
@@ -127,7 +127,7 @@ defineExpose<InputInstance>({ ref: _ref })
     <!-- textarea -->
     <template v-else>
       <textarea
-        ref="textareaRef" v-model="inputValue" class="ch-textarea__wrapper" :disabled="disabled"
+        ref="textarea" v-model="inputValue" class="ch-textarea__wrapper" :disabled="disabled"
         v-bind="$attrs" :readonly="readonly" :autocomplete="autocomplete"
         :placeholder="placeholder" :autofocus="autofocus" :form="form"
         @focus="handleFocus" @blur="handleBlur" @input="handleInput" @change="handleChange"

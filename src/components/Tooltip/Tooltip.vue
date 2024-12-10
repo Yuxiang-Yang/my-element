@@ -26,11 +26,11 @@ const {
 
 const emit = defineEmits<TooltipEmits>()
 
-const triggerNode = useTemplateRef('triggerNode')
-const popperNode = useTemplateRef('popperNode')
-const arrowNode = useTemplateRef('arrowNode')
+const triggerNodeRef = useTemplateRef('triggerNode')
+const popperNodeRef = useTemplateRef('popperNode')
+const arrowNodeRef = useTemplateRef('arrowNode')
 const mergedOptions = computed(() => {
-  const middleware = [flip(), shift(), offset(10), arrow({ element: arrowNode })]
+  const middleware = [flip(), shift(), offset(10), arrow({ element: arrowNodeRef })]
   if (sameWidth) {
     middleware.push(size({
       apply({ rects, elements }) {
@@ -47,7 +47,7 @@ const mergedOptions = computed(() => {
     ...floatingOptions,
   }
 })
-const { floatingStyles, middlewareData, placement: placementFinal } = useFloating(triggerNode, popperNode, mergedOptions.value)
+const { floatingStyles, middlewareData, placement: placementFinal } = useFloating(triggerNodeRef, popperNodeRef, mergedOptions.value)
 
 const arrowStyle = computed(() => {
   const side = placementFinal.value.split('-')[0] as Side
@@ -131,8 +131,8 @@ function clearEvents() {
 }
 
 attachEvents()
-const popperContainerNode = useTemplateRef('popperContainerNode')
-useClickOutside(popperContainerNode, () => {
+const popperContainerNodeRef = useTemplateRef('popperContainerNode')
+useClickOutside(popperContainerNodeRef, () => {
   if (trigger === 'click' && isOpen.value && !manual) {
     closeFinal()
   }

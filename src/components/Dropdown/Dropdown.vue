@@ -12,7 +12,7 @@ defineOptions({
 const { effect = 'light', hideOnClick, showAfter, hideAfter } = defineProps<DropdownProps>()
 const emit = defineEmits<DropdownEmits>()
 
-const tooltipRef = useTemplateRef<TooltipInstance>('tooltipRef')
+const tooltipRef = useTemplateRef<TooltipInstance>('tooltip')
 function onCommand(command: Command) {
   if (hideOnClick) {
     tooltipRef.value?.hide()
@@ -30,7 +30,7 @@ defineExpose<DropdownInstance>({
 <template>
   <div class="ch-dropdown">
     <Tooltip
-      ref="tooltipRef"
+      ref="tooltip"
       :trigger="trigger"
       :placement="placement"
       :floating-options="floatingOptions"
