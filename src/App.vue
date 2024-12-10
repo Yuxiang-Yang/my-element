@@ -187,7 +187,7 @@ const switchValue = ref('right')
     </div>
     <Icon icon="arrow-up" color="purple" :size="size" spin></Icon>
     <div class="row">
-      <Alert ref="alertRef" type="primary" title="title" description="description" @close="(e) => console.log(e)"></Alert>
+      <Alert ref="alertRef" type="primary" title="title" description="description"></Alert>
     </div>
     <div class="row">
       <Alert type="success" title="title" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid labore ratione porro similique natus impedit ad sequi esse, maxime voluptatibus molestias fugiat laboriosam voluptatem quasi dolor modi quo fugit provident ipsum, illo beatae magnam cum. Nulla deserunt magni similique debitis esse nemo dicta repellendus, possimus vero iusto, illum cumque ea!" :show-icon="true" center></Alert>
