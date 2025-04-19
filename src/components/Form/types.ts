@@ -1,7 +1,7 @@
 import type { RuleItem, ValidateError, ValidateFieldsError } from 'async-validator'
 
 export interface FormItemProps {
-  label: string
+  label?: string
   prop?: string
 }
 export type TriggerEvents = 'blur' | 'change' | 'input'
@@ -13,7 +13,7 @@ export type FormRules = Record<string, FormItemRule[]>
 export type FormModel = Record<string, any>
 export interface FormProps {
   model: FormModel
-  rules: FormRules
+  rules?: FormRules
 }
 
 export interface FormContext extends FormProps {

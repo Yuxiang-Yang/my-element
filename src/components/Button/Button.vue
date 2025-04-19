@@ -35,7 +35,7 @@ defineExpose<ButtonInstance>({
   >
     <Icon v-if="loading" icon="spinner" spin></Icon>
     <Icon v-if="icon" :icon="icon"></Icon>
-    <span><slot></slot></span>
+    <span v-if="!circle"><slot></slot></span>
   </button>
 </template>
 

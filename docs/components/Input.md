@@ -47,3 +47,45 @@ description: Input 组件的文档
 使用 `clearable` 属性即可得到一个可一键清空的输入框
 
 <preview path="../demos/Input/Clear.vue" title="清空文本框" description="Input 清空文本框"></preview>
+
+## API
+
+### Attributes
+
+| 属性名                | 说明                                         | 类型                 | 默认值  |
+| --------------------- | -------------------------------------------- | -------------------- | ------- |
+| type                  | input 原生类型                               | `'string'`           | `text`  |
+| model-value / v-model | 绑定值                                       | `'string'`           |         |
+| disabled              | 是否禁用                                     | `boolean`            | `false` |
+| placeholder           | 输入框占位文本                               | `string`             |         |
+| size                  | 输入框尺寸，只在 type 不为 'textarea' 时有效 | `'large' \| 'small'` |         |
+| show-password         | 是否显示切换密码图标                         | `boolean`            | `false` |
+| clearable             | 是否显示清除按钮                             | `boolean`            | `false` |
+| readonly              | 原生 readonly 属性，是否只读                 | `boolean`            | `false` |
+| autofocus             | 原生属性，自动获取焦点                       | `boolean`            | `false` |
+| autocomplete          | 原生 autocomplete 属性                       | `string`             | `off`   |
+
+### Events
+
+| 事件名 | 说明                                          | 类型                      |
+| ------ | --------------------------------------------- | ------------------------- |
+| blur   | 当选择器的输入框失去焦点时触发                | `(e: FocusEvent) => void` |
+| focus  | 当选择器的输入框获得焦点时触发                | `(e: FocusEvent) => void` |
+| change | 当选择器的输入框失去焦点时触发                | `(e: string) => void`     |
+| input  | 当选择器的输入框获得焦点时触发                | `(e: string) => void`     |
+| clear  | 在点击由 `clearable` 属性生成的清空按钮时触发 | `() => void`              |
+
+### Slots
+
+| 名称    | 说明           |
+| ------- | -------------- |
+| prefix  | 输入框头部内容 |
+| suffix  | 输入框尾部内容 |
+| prepend | 输入框前置内容 |
+| append  | 输入框后置内容 |
+
+### Exposes
+
+| 名称 | 说明                       | 类型                                           |
+| ---- | -------------------------- | ---------------------------------------------- |
+| ref  | HTML元素 input 或 textarea | `Ref<HTMLInputElement \| HTMLTextAreaElement>` |

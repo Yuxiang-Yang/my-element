@@ -1,10 +1,10 @@
 :root {
   --vp-c-brand-1: var(--ch-color-primary);
-  --vp-c-brand-2: var(--ch-color-primary-light-3);
-  --vp-c-brand-3: var(--ch-color-primary-light-5);
+  --vp-c-brand-2: var(--ch-color-primary-light-2);
+  --vp-c-brand-3: var(--ch-color-primary);
   --vp-c-brand-dark: var(--ch-color-primary-dark-2);
   --vp-c-brand-darker: #265f99;
-
+  --vp-code-color: var(--ch-color-primary-dark-2);
   --component-preview-bg: var(--vp-code-block-bg);
   --component-preview-soft: var(--vp-code-block-bg-light);
 }
@@ -20,4 +20,8 @@ h5,
 h6,
 p {
   color: var(--vp-c-text-1);
+}
+
+th:nth-of-type(4) {
+  width: 80px;
 }

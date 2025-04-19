@@ -10,7 +10,7 @@ export interface SelectOption {
 
 export interface SelectProps {
   modelValue: string
-  placeholder: string
+  placeholder?: string
   disabled?: boolean
   effect?: 'light' | 'dark'
   clearable?: boolean

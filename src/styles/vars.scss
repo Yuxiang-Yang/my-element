@@ -13,7 +13,9 @@
       --ch-color-#{$type}-light-#{$i}: #{color.mix(#fff, $color, $i * 10%)};
     }
   }
-  --ch-color-primary-dark-2: rgb(51.2, 126.4, 204);
+  @each $type, $color in constants.$colors {
+    --ch-color-#{$type}-dark-2: #{color.mix(#000, $color, 20%)};
+  }
   --ch-color-success: #{map.get(constants.$colors, 'success')};
   --ch-color-warning: #{map.get(constants.$colors, 'warning')};
   --ch-color-danger: #{map.get(constants.$colors, 'danger')};

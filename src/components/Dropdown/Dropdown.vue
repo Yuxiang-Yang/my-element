@@ -9,7 +9,7 @@ defineOptions({
   name: 'ChDropdown',
 })
 
-const { effect = 'light', hideOnClick, showAfter, hideAfter } = defineProps<DropdownProps>()
+const { trigger, placement, floatingOptions, manual, effect = 'light', hideOnClick, showAfter, hideAfter } = defineProps<DropdownProps>()
 const emit = defineEmits<DropdownEmits>()
 
 const tooltipRef = useTemplateRef<TooltipInstance>('tooltip')

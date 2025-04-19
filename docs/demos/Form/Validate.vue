@@ -11,11 +11,16 @@ import { reactive, ref } from 'vue'
 const model = reactive({
   email: '',
   password: '',
-  confirmPwd: '',
   agreement: false,
   zone: '',
 })
-
+const rules = {
+  // name: [{ type: 'string', required: true, trigger: 'blur' }, { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' },],
+  email: [{ type: 'email', required: true, trigger: 'blur' }],
+  password: [{ type: 'string', required: true, trigger: 'blur' }, { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }],
+  agreement: [{ type: 'enum', required: true, enum: [true], message: '请同意协议' }],
+  zone: [{ type: 'string', required: true, trigger: 'change' }],
+}
 const options = [
   { label: 'zone 1', value: 'one' },
   { label: 'zone 2', value: 'two' },
@@ -23,7 +28,12 @@ const options = [
 ]
 const formRef = ref()
 async function submit() {
-  alert('submitted!')
+  try {
+    await formRef.value.validate()
+    console.log('passed!')
+  } catch (e) {
+    console.log('the promise', e)
+  }
 }
 function reset() {
   formRef.value.resetFields()
@@ -32,7 +42,7 @@ function reset() {
 
 <template>
   <div>
-    <Form ref="formRef" :model="model">
+    <Form ref="formRef" :model="model" :rules="rules">
       <!-- <FormItem prop="name" label="enter your name" #default="{ validate }">
       <input v-model="model.name" @blur="validate('blur')" @input="validate('input')"/>
     </FormItem> -->
@@ -45,7 +55,7 @@ function reset() {
       <FormItem prop="agreement" label="Agreement">
         <Switch v-model="model.agreement" />
       </FormItem>
-      <FormItem prop="zone" label="Zone">
+      <FormItem prop="zone" label="zone">
         <Select v-model="model.zone" :options="options">
           <Option v-for="option in options" :key="option.value" :label="option.label" :value="option.value" :disabled="option.disabled"></Option>
         </Select>

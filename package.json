@@ -1,8 +1,13 @@
 {
   "name": "my-element",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "a Vue3 component library",
+  "private": false,
   "type": "module",
+  "author": "Yuxiang Yang",
+  "license": "MIT",
+  "keywords": ["Component", "UI", "Vue3"],
+  "repository": { "type": "git", "url": "https://github.com/Yuxiang-Yang/my-element" },
   "files": [
     "dist"
   ],

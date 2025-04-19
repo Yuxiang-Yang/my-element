@@ -6,6 +6,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'My Element',
   description: 'A ElementPlus-like component library',
+  head: [['link', { rel: 'icon', href: '/element-plus-logo-small.svg' }]],
   vite: {
     plugins: [
       vueJsx(),
@@ -36,20 +37,50 @@ export default defineConfig({
       dark: 'one-dark-pro',
     },
   },
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh',
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/element-plus-logo-small.svg',
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: '首页', link: '/' },
+      { text: '组件', link: '/components/Button' },
     ],
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' },
-        ],
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索',
+          },
+          modal: {
+            displayDetails: '显示详情',
+            resetButtonTitle: '重置',
+            backButtonTitle: '返回',
+            noResultsText: '未找到结果',
+            footer: {
+              selectText: '选择',
+              navigateText: '导航',
+              closeText: '关闭',
+            },
+          },
+        },
       },
+    },
+    darkModeSwitchLabel: '黑暗模式',
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '返回顶部',
+    outlineTitle: '本页大纲',
+    lastUpdatedText: '上次更新',
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    sidebar: [
       {
         text: 'Basic 基础组件',
         items: [
@@ -63,6 +94,26 @@ export default defineConfig({
           { text: 'Input 输入框', link: '/components/Input' },
           { text: 'Switch 开关', link: '/components/Switch' },
           { text: 'Select 选择器', link: '/components/Select' },
+        ],
+      },
+      {
+        text: 'Feedback 反馈组件',
+        items: [
+          { text: 'Alert 提示', link: '/components/Alert' },
+          { text: 'Tooltip 提示', link: '/components/Tooltip' },
+          { text: 'Message 消息提示', link: '/components/Message' },
+        ],
+      },
+      {
+        text: 'Data 数据展示',
+        items: [
+          { text: 'Collapse 折叠面板', link: '/components/Collapse' },
+        ],
+      },
+      {
+        text: 'Navigation 导航',
+        items: [
+          { text: 'Dropdown 下拉菜单', link: '/components/Dropdown' },
         ],
       },
     ],

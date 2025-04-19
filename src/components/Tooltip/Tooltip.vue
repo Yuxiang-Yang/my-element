@@ -13,10 +13,10 @@ defineOptions({
 
 const {
   disabled = false,
-  effect = 'dark',
+  effect = 'light',
   placement = 'bottom',
-  trigger = 'click',
-  manual,
+  trigger = 'hover',
+  manual = false,
   floatingOptions,
   sameWidth = false,
   transition = 'fade',
@@ -116,6 +116,10 @@ const triggerEventsOuter: Ref<Record<string, EventListener>> = ref({})
 const popperEvents: Ref<Record<string, EventListener>> = ref({})
 
 function attachEvents() {
+  if (manual) {
+    return
+  }
+
   if (trigger === 'click') {
     triggerEvents.value.click = toggle
   } else if (trigger === 'hover') {

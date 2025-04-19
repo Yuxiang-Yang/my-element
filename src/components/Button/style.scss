@@ -40,6 +40,10 @@
   padding: 8px 15px;
   font-size: var(--ch-font-size-base);
   border-radius: var(--ch-border-radius-base);
+  svg {
+    height: 1em;
+    width: 1em;
+  }
   & + & {
     margin-left: 12px;
   }
@@ -119,6 +123,9 @@
   padding: 12px 19px;
   font-size: var(--ch-font-size-base);
   border-radius: var(--ch-border-radius-base);
+  &.is-circle {
+    width: var(--ch-button-size);
+  }
 }
 .ch-button--small {
   --ch-button-size: 24px;
@@ -126,4 +133,7 @@
   padding: 5px 11px;
   font-size: 12px;
   border-radius: calc(var(--ch-border-radius-base) - 1px);
+  &.is-circle {
+    width: var(--ch-button-size);
+  }
 }

@@ -10,7 +10,7 @@ export function useClickOutside(elementRef: Ref<HTMLElement | null>, callback: (
     }
   }
   const removeListener = () => {
-    document.addEventListener('click', handler)
+    document.removeEventListener('click', handler)
   }
   onMounted(() => {
     document.addEventListener('click', handler)

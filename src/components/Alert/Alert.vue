@@ -7,7 +7,7 @@ defineOptions({
   name: 'ChAlert',
 })
 
-const { type = 'info', effect = 'light', showIcon = false } = defineProps<AlertProps>()
+const { type = 'info', effect = 'light', showIcon = false, closable = true } = defineProps<AlertProps>()
 const emit = defineEmits<AlertEmits>()
 
 const visible = ref(true)
@@ -52,7 +52,7 @@ defineExpose<AlertInstance>({ open, close })
         </div>
         <div class="ch-alert__close-btn" :class="{ 'is-customed': closeText }">
           <span v-if="closeText">{{ closeText }}</span>
-          <Icon v-else icon="xmark" @click="close"></Icon>
+          <Icon v-else-if="closable" icon="xmark" @click="close"></Icon>
         </div>
       </div>
     </div>

@@ -35,3 +35,24 @@ description: Switch 组件的文档
 使用 `active-text` 属性与 `inactive-text` 属性来设置开关的文字描述。
 
 <preview path="../demos/Switch/Text.vue" title="支持文字描述" description="Switch 文字描述"></preview>
+
+## API
+
+### Attributes
+
+| 属性名                | 说明                             | 类型                          | 默认值  |
+| --------------------- | -------------------------------- | ----------------------------- | ------- |
+| model-value / v-model | 绑定值                           | `string \| boolean \| number` | `false` |
+| disabled              | 是否禁用                         | `boolean`                     | `false` |
+| active-text           | switch 打开时的文字描述          | `string`                      |         |
+| inactive-text         | switch 的状态为 off 时的文字描述 | `string`                      |         |
+| active-value          | switch 状态为 on 时的值          | `string \| boolean \| number` | `true`  |
+| inactive-value        | switch 状态为 off 时的值         | `string \| boolean \| number` | `false` |
+| name                  | switch 对应的 name 属性          | `string`                      |         |
+| id                    | input 的 id                      | `string`                      |         |
+
+### Events
+
+| 事件名 | 说明                            | 类型                                              |
+| ------ | ------------------------------- | ------------------------------------------------- |
+| change | switch 状态发生变化时的回调函数 | `(e: 'string' \| 'boolean' \| 'number' ) => void` |
