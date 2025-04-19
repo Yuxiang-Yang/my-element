@@ -7,7 +7,7 @@ export default defineConfig({
   title: 'My Element',
   description: 'A ElementPlus-like component library',
   base: '/my-element/',
-  head: [['link', { rel: 'icon', href: '/element-plus-logo-small.svg' }]],
+  head: [['link', { rel: 'icon', href: '/my-element/element-plus-logo-small.svg' }]],
   vite: {
     plugins: [
       vueJsx(),
