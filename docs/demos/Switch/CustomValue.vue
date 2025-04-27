@@ -7,5 +7,8 @@ const test = ref('right')
 
 <template>
   <Switch v-model="test" active-value="right" inactive-value="wrong" aaa="right" />
-  <h4>model-value: {{ test }}</h4>
+  <fieldset>
+    <legend>model value</legend>
+    <pre>{{ test }}</pre>
+  </fieldset>
 </template>

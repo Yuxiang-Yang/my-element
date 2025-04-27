@@ -25,3 +25,13 @@ p {
 th:nth-of-type(4) {
   width: 80px;
 }
+
+fieldset {
+  padding: 0 20px 10px 20px;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+}
+
+legend {
+  padding: 3px 6px;
+}

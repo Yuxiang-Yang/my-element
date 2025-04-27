@@ -95,9 +95,11 @@ async function remoteMethod(query) {
 </script>
 
 <template>
-  <div class="flex flex-wrap">
-    <div class="m-4">
-      <p>default</p>
+  <div class="select-remote-container">
+    <div class="select-remote-item">
+      <div class="select-remote-label">
+        default
+      </div>
       <Select
         v-model="value"
         multiple
@@ -117,8 +119,10 @@ async function remoteMethod(query) {
         />
       </Select>
     </div>
-    <div class="m-4">
-      <p>use remote-show-suffix</p>
+    <div class="select-remote-item">
+      <div class="select-remote-label">
+        use remote-show-suffix
+      </div>
       <Select
         v-model="value"
         multiple
@@ -141,3 +145,16 @@ async function remoteMethod(query) {
     </div>
   </div>
 </template>
+
+<style>
+.select-remote-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.select-remote-label {
+  margin-bottom: 5px;
+}
+.select-remote-item {
+  margin-bottom: 1rem;
+}
+</style>

@@ -16,5 +16,8 @@ const options = [
   <Select v-model="test" placeholder="可清空选择器，请选择" clearable>
     <Option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"></Option>
   </Select>
-  <span>{{ test }}</span>
+  <fieldset>
+    <legend>value</legend>
+    <div>{{ test }}</div>
+  </fieldset>
 </template>

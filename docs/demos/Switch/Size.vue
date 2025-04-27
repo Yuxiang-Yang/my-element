@@ -17,8 +17,6 @@ const test = ref(false)
 .switch-size-container {
   display: flex;
   align-items: center;
-  .vk-switch {
-    margin-right: 10px;
-  }
+  gap: 0.6rem;
 }
 </style>

@@ -22,5 +22,8 @@ const options = [
       :disabled="item.disabled"
     ></Option>
   </Select>
-  <span>{{ test }}</span>
+  <fieldset>
+    <legend>value</legend>
+    <div>{{ test }}</div>
+  </fieldset>
 </template>

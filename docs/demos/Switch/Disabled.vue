@@ -7,6 +7,19 @@ const test2 = ref(false)
 </script>
 
 <template>
-  正常：<Switch v-model="test" /> <br />
-  禁用：<Switch v-model="test2" disabled />
+  <div class="switch-disabled-container">
+    <span>正常</span> <Switch v-model="test" />
+  </div>
+  <div class="switch-disabled-container">
+    <span>禁用</span> <Switch v-model="test2" disabled />
+  </div>
 </template>
+
+<style scoped>
+.switch-disabled-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem;
+}
+</style>

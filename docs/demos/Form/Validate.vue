@@ -69,11 +69,10 @@ function reset() {
         </Button>
       </FormItem>
     </Form>
-
-    <div>
-      Form value:
+    <fieldset>
+      <legend>Form value</legend>
       <pre>{{ model }}</pre>
-    </div>
+    </fieldset>
   </div>
 </template>
 
